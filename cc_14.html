@@ -5,6 +5,60 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Customer Support Ticket System</title>
  </head>
+
+ <style>
+    body {
+        background-color: #8ed4cc; /* Sea Green */
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    header, footer {
+        background-color: #f4c1dd; /* Baby Pink */
+        color: #000000; /* Black */
+        padding: 15px;
+    }
+    main {
+        padding: 20px;
+    }
+    #ticketContainer {
+        border: 2px dashed #a002f6; /* Purple */
+        padding: 20px;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .support-ticket {
+        border: 1px solid #000000; /* Black */
+        width: 700px;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: rgb(195, 156, 213); /* Pastel Purple */
+        margin: 10px 0;
+        font-size: 16px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Black */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .priority-label {
+        font-weight: bold;
+        display: block;
+        margin-top: 5px;
+    }
+    .resolve-button {
+        border: 1px solid #000000; /* Black */
+        border-radius: 5px;
+        padding: 5px 10px;
+        background-color: rgb(82, 164, 200); /* Light Blue */
+        color: rgb(0, 0, 0); /* Black */
+        cursor: pointer;
+    }
+    .resolve-btn:hover {
+        background-color: rgb(47, 64, 249); /* Blue */
+    }
+ </style>
  
  <body>
      <header>
