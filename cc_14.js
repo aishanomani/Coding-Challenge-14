@@ -25,6 +25,10 @@ function addSupportTicket(customerName, issueDescription, priorityLevel) { // Fu
         ticketContainer.removeChild(ticket); // Resolve only the specific card
     });
 
+    ticket.addEventListener("dblclick", function () { // Added for Task 5
+        enableEditing(ticket, nameHeading, issueParagraph, priorityLabel); // Enable editing by double-clicking
+    });
+
     ticket.appendChild(nameHeading);  // Append heading to ticket
     ticket.appendChild(issueParagraph); // Append paragraph to ticket
     ticket.appendChild(priorityLabel); // Append label to ticket
@@ -51,9 +55,47 @@ document.getElementById("ticketContainer").addEventListener("click", function (e
     }
 });
 
+// Task 5: Additional Challenge – Inline Editing of Support Tickets (Part of Task 5 is in Task 2)
+console.log("********** Inline Editing for Support Tickets **********");
+function enableEditing(ticket, nameElement, issueElement, priorityElement) {
+    const nameInput = document.createElement("input"); // Edit name
+    nameInput.type = "text";
+    nameInput.value = nameElement.textContent;
+    
+    const issueInput = document.createElement("input"); // Edit issue
+    issueInput.type = "text";
+    issueInput.value = issueElement.textContent;
+
+    const priorityInput = document.createElement("input"); // Edit priority level
+    priorityInput.type = "text";
+    priorityInput.value = priorityElement.textContent;
+    
+    const saveButton = document.createElement("button"); // Save button
+    saveButton.textContent = "Save";
+    saveButton.classList.add("save-btn");
+    
+    ticket.innerHTML = ""; // Clear existing elements
+    ticket.appendChild(nameInput);
+    ticket.appendChild(issueInput);
+    ticket.appendChild(priorityInput);
+    ticket.appendChild(saveButton);
+    
+    saveButton.addEventListener("click", function () {
+        nameElement.textContent = nameInput.value;
+        issueElement.textContent = issueInput.value;
+        priorityElement.textContent = priorityInput.value;
+        
+        ticket.innerHTML = "";
+        ticket.appendChild(nameElement);
+        ticket.appendChild(issueElement);
+        ticket.appendChild(priorityElement);
+        ticket.appendChild(resolveButton);
+    });
+}
+
 // Test Cases
 addSupportTicket("Ambika Rao", "Unable to reset password", "High"); // Adding customer 1
 addSupportTicket("Carlos Rangel", "Error displayed on dashboard", "Medium"); // Adding customer 2
 addSupportTicket("Ishaan Goel", "Delayed loading time", "Low"); // Adding customer 3
 
-highlightHighPriorityTickets();
+highlightHighPriorityTickets(); // Adding highlight to all high priority tickets
