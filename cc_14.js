@@ -20,8 +20,9 @@ function addSupportTicket(customerName, issueDescription, priorityLevel) { // Fu
     const resolveButton = document.createElement("button"); // Resolve button
     resolveButton.textContent = "Resolve";
     resolveButton.setAttribute("class", "resolve-button");
-    resolveButton.addEventListener("click", function () { // Event listener to resolve card when button is clicked
-        ticketContainer.removeChild(ticket);
+    resolveButton.addEventListener("click", function (event) { // Added for Task 4
+        event.stopPropagation(); // Prevent event bubbling to the container
+        ticketContainer.removeChild(ticket); // Resolve only the specific card
     });
 
     ticket.appendChild(nameHeading);  // Append heading to ticket
@@ -39,6 +40,16 @@ function highlightHighPriorityTickets() {
         ticket.style.backgroundColor = "#ff6666"; // Change background to red 
     });
 }
+
+// Task 4: Implementing Ticket Resolution with Event Bubbling (Part of Task 4 is in Task 2)
+console.log("********** Support Ticket Resolution with Event Bubbling **********");
+document.getElementById("ticketContainer").addEventListener("click", function (event) {
+    if (event.target.classList.contains("support-ticket")) {
+        console.log("Ticket Has Been Clicked:", event.target); // Logs message if ticket is clicked
+    } else {
+        console.log("Click occurred within the ticket container but outside a ticket."); // Logs message if click is within container but outside ticket
+    }
+});
 
 // Test Cases
 addSupportTicket("Ambika Rao", "Unable to reset password", "High"); // Adding customer 1
